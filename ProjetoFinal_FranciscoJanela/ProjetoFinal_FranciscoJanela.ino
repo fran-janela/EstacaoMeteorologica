@@ -5,7 +5,7 @@
     @Professor: Fabio Ferraz Junior
  */
  
-////////////// Bibliotecas e Variáveis ///////////////
+/////////////// BIBLIOTECAS E VARIAVEIS //////////////////
 // Liquid Crystal Display:
 #include <LiquidCrystal.h>
 
@@ -35,23 +35,31 @@ int LDRsensorValue;
 float LDRtensao, LDRresistencia, LDRluminosidade;
 
 
-/////////////////// SETUP DO CÓDIGO /////////////////////
+//////////////////// SETUP DO CÓDIGO //////////////////////
 void setup() {
   Serial.begin(9600);
   analogReference(INTERNAL);
+  
   //LCD:
+  lcd.begin(16,2);
+  
   //TMP 36:
+  pinMode(A0, INPUT);
+  
   //DHT 22:
+  dht.begin();
+  
   //LDR:
-
+  pinMode(A1, INPUT);
+  
 }
 
 ///////////////// DEFININDO SUB-ROTINAS ///////////////////
 // Sub-rotina do TMP com calibração:
 float TMP_celsiusCalibrado() {
-  TMPsensorValue = analogRead(A0)                  // leitura do sensor
-  TMPtensao = (sensorValue*1.1)/1023.0;            // conversão para tensão
-  TMPcelsius = 99.62636965*TMPtensao-49.75568659;  // conversão para graus Celsius com calibração
+  TMPsensorValue = analogRead(A0);                  // leitura do sensor
+  TMPtensao = (TMPsensorValue*1.1)/1023.0;          // conversão para tensão
+  TMPcelsius = 99.62636965*TMPtensao-49.75568659;   // conversão para graus Celsius com calibração
   return TMPcelsius;
 }
 
@@ -63,16 +71,16 @@ float DHT_umidadeCalibrado() {
 
 // Sub-rotina do LDR:
 float LDR_luminosidade() {
-  LDRsensorValue = analogRead(A1);                      // leitura do sensor
-  LDRtensao = (LDRsensorValue/1023.0)*1.1;              // conversão para tensao
-  LDRresistencia = (tensao*184000.0)/(3.3-LDRtensao);   // conversão para resistência
-  LDRluminosidade = pow(10,5.0-log10(LDRresistencia));  // conversão para luminosidade
+  LDRsensorValue = analogRead(A1);                         // leitura do sensor
+  LDRtensao = (LDRsensorValue/1023.0)*1.1;                 // conversão para tensao
+  LDRresistencia = (LDRtensao*184000.0)/(3.3-LDRtensao);   // conversão para resistência
+  LDRluminosidade = pow(10,5.0-log10(LDRresistencia));     // conversão para luminosidade
   return LDRluminosidade;
 }
 
 
 ////////////////// ROTINA PRINCIPAL //////////////////////
 void loop() {
-  // put your main code here, to run repeatedly:
+  
 
 }
