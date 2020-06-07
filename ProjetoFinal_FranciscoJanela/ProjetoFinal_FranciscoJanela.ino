@@ -1,5 +1,5 @@
 /*
-    Projeto Final - Estação Metereológica
+    Projeto Final - Estação Meteorológica
     Curso: Instrumentação e Medição
     @Autor: Francisco Janela - 1C
     @Professor: Fabio Ferraz Junior
@@ -81,6 +81,30 @@ float LDR_luminosidade() {
 
 ////////////////// ROTINA PRINCIPAL //////////////////////
 void loop() {
-  
+  // print TMP36:
+  lcd.clear();
+  lcd.print("Temperatura [C]:");
+  lcd.setCursor(5,1);
+  lcd.print(TMP_celsiusCalibrado());
+  Serial.print("\nTemperatura [C]: ");
+  Serial.println(TMP_celsiusCalibrado());
+  delay(1000);
 
+  // print DHT22:
+  lcd.clear();
+  lcd.print("Umidade [%]:");
+  lcd.setCursor(5,1);
+  lcd.print(DHT_umidadeCalibrado());
+  Serial.print("\nUmidade [%]: ");
+  Serial.println(DHT_umidadeCalibrado());
+  delay(1000);
+
+  //print LDR:
+  lcd.clear();
+  lcd.print("Lumino [Lux]:");
+  lcd.setCursor(5,1);
+  lcd.print(LDR_luminosidade());
+  Serial.print("\nLuminosidade [Lux]: ");
+  Serial.println(LDR_luminosidade());
+  delay(1000);
 }
