@@ -88,7 +88,7 @@ void loop() {
   lcd.print(TMP_celsiusCalibrado());
   Serial.print("\nTemperatura [C]: ");
   Serial.println(TMP_celsiusCalibrado());
-  delay(1000);
+  delay(2000);
 
   // print DHT22:
   lcd.clear();
@@ -97,7 +97,7 @@ void loop() {
   lcd.print(DHT_umidadeCalibrado());
   Serial.print("\nUmidade [%]: ");
   Serial.println(DHT_umidadeCalibrado());
-  delay(1000);
+  delay(2000);
 
   //print LDR:
   lcd.clear();
@@ -106,5 +106,5 @@ void loop() {
   lcd.print(LDR_luminosidade());
   Serial.print("\nLuminosidade [Lux]: ");
   Serial.println(LDR_luminosidade());
-  delay(1000);
+  delay(2000);
 }
